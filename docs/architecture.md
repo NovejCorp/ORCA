@@ -1,6 +1,11 @@
 # Architecture
 Status: proposed. Normative words describe intended requirements, not implemented guarantees.
 
+## Persistent Pods and bounded runs
+A Pod retains its identity, specialization, approved memory, workflow configuration and performance history across missions. Its active agents are allocated on demand and may share model services. A pod run has a finite objective, budget, permission grant and lifecycle; ending a run does not delete the Pod definition. Dynamic formation revises membership or creates a new persistent definition under review. Archival is separate from run cancellation.
+
+The preferred initial investigation targets DeepSeek Harness; future NC Brain runtimes may implement the same adapter contract. Neither integration exists today. ORCA remains independently specified.
+
 ## Scope and layering
 ORCA owns objective decomposition, pod membership, cross-pod dependencies, aggregate budgets, policy decisions, and evidence-based evaluation. A replaceable runtime owns agent execution mechanics. Adapters translate between them without silently weakening policy.
 
@@ -71,3 +76,8 @@ A lost worker expires its lease. A policy outage fails closed. A memory outage p
 Prompt injection, memory poisoning, compromised plugins, reviewer collusion, privilege escalation, cross-tenant leakage, and duplicated effects are explicit threats. Independent review helps only when independence is real; model agreement is not truth. OS/network isolation, authorization tests, and adversarial fixtures are prerequisites for claims of containment.
 
 Open questions include trusted deployment boundaries, adapter portability costs, event-store choice, and practical isolation overhead. See [RFC 0001](../rfcs/0001-orca-architecture.md).
+
+## Plugin composition and adaptation
+Workload components are versioned plugins connected through typed ports. The pod harness cycle is Plan → Execute → Test → Evaluate → Adapt → Remember. Adapt produces a candidate composition, not an immediate mutation of running work. Keep the active revision pinned; validate interface compatibility, permissions, quality, latency and cost on an isolated candidate before promotion. See [plugin specification](plugins-and-adaptation.md).
+
+Distributed coordination means leased workers exchange durable, authenticated events under a single objective budget and policy authority. It does not imply peer consensus, decentralized policy authority or a distributed consensus implementation. Start with a single durable coordinator and recoverable workers; assess multiple coordinators only after fencing and split-brain tests exist.

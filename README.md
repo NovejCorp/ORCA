@@ -1,43 +1,45 @@
-# ORCA
-### Experimental pod coordination above replaceable agent runtimes
+# ORCA — Orchestrated Reasoning, Collaboration & Adaptation
+
+<p align="center"><img src="assets/orca-logo.png" width="180" alt="ORCA: an orca forming an O with cyan pod accents"></p>
+
+An experimental, bio-inspired orchestration architecture for organizing AI agents into persistent, specialized Pods.
 
 **Status: design proposal · no working implementation · no benchmark results.**
 
-ORCA explores whether temporary, bounded teams of agents can complete complex work more reliably than a single agent or a fixed team, at an acceptable coordination cost. It combines explicit pod contracts, logical harness boundaries, shared infrastructure, evidence-backed memory, and human-controlled safety gates.
+ORCA explores how collective memory, adaptive team formation, distributed coordination, and evidence-driven workflow improvement can make multi-agent systems more reliable and efficient.
+
+Designed to operate above interchangeable agent harnesses, including DeepSeek Harness and future NC Brain runtimes. These integrations are proposed, not implemented.
 
 This repository records a proposed architecture and test plan. It does not claim a proven invention, scientific novelty, production readiness, or superiority over existing frameworks. There is no executable product to install.
 
 ## The idea
 
-A **skill** is a reusable procedure or capability. An **agent** is an executing worker with context and tools. A **pod** is a bounded assignment and coordination contract for one or more agents: objective, members, permissions, budget, evidence, lifecycle, and acceptance criteria. Adding skills to an agent does not by itself establish that contract.
+A **skill** is a reusable procedure or capability. An **agent** is an executing worker with context and tools. A **Pod** is a persistent, specialized team definition with identity, policies, knowledge, preferred workflows, and performance history. A **pod run** is a bounded assignment and coordination contract for one or more activated agents: objective, members, permissions, budget, evidence, lifecycle, and acceptance criteria. Adding skills to an agent does not by itself establish that contract.
 
 Each pod has a **logical harness**: its own execution identity, state, policy, resource accounting, and recovery boundary. This does not require a separate server, model, database, or full harness installation for every pod. Shared services must preserve those boundaries.
 
-```mermaid
-flowchart TB
-    H[Human: objective and approvals] --> O[ORCA coordination layer]
-    O --> P1[Research pod: logical harness]
-    O --> P2[Build pod: logical harness]
-    O --> P3[Evaluation pod: logical harness]
-    P1 --> A[Runtime adapter boundary]
-    P2 --> A
-    P3 --> A
-    A --> R[Replaceable runtime: DSH or another backend]
-    O --> S[Shared policy, events, memory and budgets]
-    R --> G[Enforced tool gateway]
-    G --> T[Authorized tools and isolated workspaces]
-```
+![ORCA architecture: persistent Pods, shared services, runtime adapters and the adaptation loop](assets/orca-architecture.svg)
 
-DeepSeek Harness is a candidate backend, not a dependency today. ORCA is a separate proposal, not a fork or distribution of DeepSeek Harness and not part of NC_Brain. “Harness2” is not a specified public dependency; the design uses the generic logical harness concept instead. No private project code or configurations are included.
+[Editable Mermaid source](docs/diagrams.md)
+
+DeepSeek Harness is the initial runtime target to investigate. Future NC Brain runtimes are a portability direction, subject to adapter conformance. ORCA remains a separate repository; this does not change or expose either project's implementation. No private project code or configurations are included.
 
 ## Proposed operating loop
 
 1. Accept an objective, measurable acceptance criteria, and permission ceiling.
-2. Start with the smallest adequate pod; select members from a capability registry.
+2. Activate the smallest adequate team from a persistent Pod definition; select members from a capability registry.
 3. Execute through an adapter with bounded tools, budget, time, and memory scope.
-4. Re-form or dissolve pods only when justified by evidence and within the original ceiling.
+4. Reconfigure active teams or archive Pod definitions only when justified by evidence and within the original ceiling.
 5. Independently verify artifacts; request approval for gated external effects.
 6. Record results and propose reusable lessons. Promote lessons only after evaluation.
+
+Each Pod follows **Plan → Execute → Test → Evaluate → Adapt → Remember**. Its team identity and approved knowledge persist while individual runs and model processes can end.
+
+## Everything is a plugin
+
+Building on [DeepSeek Harness’s plugin-first philosophy](https://github.com/deepseek-ai/deepseek-harness), ORCA proposes replaceable role implementations, skills, model routers, workflow steps, evaluators, memory retrievers, and runtime adapters. The Adapt phase identifies a failure, proposes a specific component replacement, tests it in isolation, compares it against a pinned baseline, and promotes or rolls it back. Policy authority and approval ceilings remain outside the replaceable workload plugins.
+
+A fixed workflow is a valid outcome: adaptation may pin a repaired step rather than continually reorganize the team. See [plugin and adaptation specification](docs/plugins-and-adaptation.md).
 
 Dynamic formation and collective memory are hypotheses to test, not automatic improvements. More agents can increase latency, correlated errors, and cost.
 
@@ -45,6 +47,7 @@ Dynamic formation and collective memory are hypotheses to test, not automatic im
 
 | Document | Purpose |
 | --- | --- |
+| [Plugins and adaptation](docs/plugins-and-adaptation.md) | Replaceable parts, validation, promotion and rollback |
 | [Architecture](docs/architecture.md) | Components, boundaries, failures, and recovery |
 | [Pod specification](docs/pod-specification.md) | Contracts, lifecycle, adapter interface |
 | [Biological inspiration](docs/biological-inspiration.md) | Metaphors and their limits |

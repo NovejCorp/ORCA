@@ -47,3 +47,6 @@ Publish sample sizes, paired differences, uncertainty intervals, distribution su
 Before final trials, record the minimum useful improvement and acceptable cost/latency tradeoffs for the chosen task family. Reject a configuration with unauthorized executed effects in the test suite pending remediation. Advance dynamic formation only if its quality or correction-time benefit meets the preregistered threshold without exceeding the approved resource ceiling. Otherwise keep fixed pods or a single agent.
 
 No numeric improvement claim belongs in the README until a reproducible report exists. Negative findings are valid outcomes.
+
+## Plugin adaptation milestone
+Before dynamic plugin replacement, implement manifest validation and a deterministic fixture that swaps one workflow step, rejects a widened grant, detects incompatible state, and rolls back a failed candidate. Evaluate fixed compositions against adapted compositions on held-out tasks with equal total experiment budgets. Count candidate-generation, sandbox evaluation and rollback costs in the full result. Persistent-Pod tests must verify identity and approved history survive worker termination while run credentials and transient contexts expire.

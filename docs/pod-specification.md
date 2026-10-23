@@ -2,7 +2,7 @@
 Status: proposed v0.1 contract; YAML below is illustrative, not a validated configuration format.
 
 ## Terms
-An agent executes a role; a skill supplies reusable instructions or capability; a pod owns a bounded objective and its acceptance contract. Pods may contain one agent. A logical harness enforces the pod's context, tool, budget, lifecycle, and recovery boundaries. No physical runtime-per-pod requirement is implied.
+An agent executes a role; a skill supplies reusable instructions or capability. A persistent Pod owns its identity, specialty, approved memory, workflow composition and history. Each pod run owns a bounded objective and acceptance contract. Pods may activate one agent. A logical harness enforces the pod's context, tool, budget, lifecycle, and recovery boundaries. No physical runtime-per-pod requirement is implied.
 
 ## Example
 ```yaml
@@ -55,7 +55,9 @@ Validate IDs, schema version, nonempty objective, measurable acceptance criteria
 
 The effective grant is the intersection of organization policy, objective ceiling, pod request, runtime enforcement capability, and current approval. Every nested pod shares the objective's aggregate limits.
 
-## Lifecycle
+## Run lifecycle
+This state machine describes one bounded execution, not the lifetime of the persistent Pod. Definitions move through Draft → Active → Archived separately; historical runs retain their original definition and composition revisions.
+
 ```mermaid
 stateDiagram-v2
     [*] --> Proposed
@@ -97,3 +99,8 @@ Task results include status, acceptance evidence, artifact references, actual/es
 
 ## Conformance cases
 A future adapter must demonstrate grant narrowing, blocked unapproved effect, cancellation, replay deduplication, recovery after interruption, aggregate budget exhaustion, and denied cross-scope memory reads. An adapter that cannot mediate tools may be used only for synthetic computation with external access disabled.
+
+## Persistent definition and composition
+Separate pod_definition_id and definition_revision from pod_run_id and attempt_id. A definition records specialty, role slots, approved memory namespace, composition manifest hash and approved plugin versions. Each run references that immutable revision plus its mission-specific grant. Registry agent definitions and skills may be reused across Pods; credentials, transcripts and mutable contexts are not implicitly shared.
+
+The logical harness cycle is Plan → Execute → Test → Evaluate → Adapt → Remember. Persist approved lessons and configuration changes without keeping model processes alive. A plugin swap increments composition_revision; current runs stay pinned unless an explicit checkpoint migration is validated. See [plugins and adaptation](plugins-and-adaptation.md).

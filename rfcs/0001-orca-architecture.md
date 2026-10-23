@@ -57,3 +57,6 @@ Demonstrate simulator conformance, aggregate budgets, denied cross-scope access,
 Discuss concrete concerns through issues, update this RFC with rationale, and record acceptance or rejection explicitly. Material security or permission changes require a new review. Until acceptance, all decisions above remain proposals.
 
 Related: [architecture](../docs/architecture.md), [pod contract](../docs/pod-specification.md), [prior art](../docs/prior-art.md), [roadmap](../docs/roadmap.md).
+
+## Clarification: persistent identity and replaceable composition
+ORCA expands to Orchestrated Reasoning, Collaboration & Adaptation. Pods are persistent specialized team definitions; runs are bounded activations. Adopt Plan → Execute → Test → Evaluate → Adapt → Remember as the logical harness cycle. Build on DSH's plugin-first philosophy with typed, versioned replacement points for workload components. Keep policy authority outside those plugins. Candidate changes require isolated tests, independent evaluation, explicit promotion records and rollback. DSH is the initial investigation target; NC Brain is a future runtime direction, not an implemented dependency.

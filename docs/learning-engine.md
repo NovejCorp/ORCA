@@ -40,3 +40,8 @@ Policy, approval gates, permissions, and spending ceilings cannot be relaxed by 
 Measure precision of retrieved lessons, unsupported-memory rate, correction rate, stale-record use, privacy violations, and task performance with memory enabled versus disabled. Detect contamination by separating training, selection, and held-out evaluation sets. A revoked source invalidates derived records; deletion must cover indexes, caches, and documented backup retention. Published benchmark artifacts must use sanitized fixtures.
 
 Rollback restores a previous approved lesson set and invalidates affected retrieval caches. Retain a minimal non-sensitive revocation audit. If an improvement disappears on held-out tasks, report that result and keep the simpler baseline.
+
+## Adapt: repair a component, retain a team
+Persistent Pods accumulate scoped evidence across runs. Adapt converts an observed failure into a proposed plugin or flow revision. Example: unsupported citations trigger a candidate citation-checker replacement; a weak result does not justify changing all agent prompts at once. The candidate must outperform or repair the pinned baseline under predefined checks before promotion. Remember records the accepted revision, evaluation evidence and rollback target; rejected candidates remain quarantined.
+
+Promotion changes organizational procedures and configuration, not model weights. Cross-pod transfer is opt-in and scope-checked: a lesson proven in research is a candidate, not automatically valid for development. See the [plugin replacement protocol](plugins-and-adaptation.md).

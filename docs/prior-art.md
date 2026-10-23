@@ -29,3 +29,6 @@ Runtime portability is unverified. DSH, LangGraph, CrewAI, AutoGen, and OpenClaw
 
 ## Additional work before novelty claims
 Review multi-agent scheduling, blackboard systems, actor systems, workflow engines, capability security, hierarchical planning, and organizational learning literature. Conduct a broader project-name search. This document is not patent clearance or a complete literature survey. No private implementation is used as comparison evidence.
+
+## Plugin philosophy
+DeepSeek Harness explicitly describes itself as “Everything is a Plugin.” ORCA builds on that philosophy and attributes it; the phrase is not claimed as an ORCA invention. The proposed extension is an evidence-governed Adapt phase that can revise a Pod's versioned composition or replace a workflow step. Plugin systems, runtime substitution and automated workflow optimization all have prior art; no exclusive novelty is asserted.
